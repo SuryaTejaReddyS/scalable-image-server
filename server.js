@@ -26,7 +26,10 @@ app.post("/upload", upload.single("image"), async (req, res) => {
     };
 
     const result = await s3.upload(params).promise();
-    res.json({ url: result.Location });
+    res.json({
+  message: `Request handled by server on port ${PORT}`,
+  url: result.Location
+});
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Upload failed" });
